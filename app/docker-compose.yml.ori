@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+    backend:
+        image: python:3
+        volumes:
+           #DJANGO PATH
+           - ./backend/ASW/manage.py:/tmp/manage.py
+        command: sh -c "python3 /tmp/manage.py runserver 0.0.0.0:8001"
+        ports:
+           - "8001:8001"

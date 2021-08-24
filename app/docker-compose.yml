@@ -1,10 +1,14 @@
 version: "3.7"
 services:
-    backend:
-        image: python:3
-        volumes:
-           #DJANGO PATH
-           - ./backend/ASW/manage.py:/tmp/manage.py
-        command: sh -c "python3 /tmp/manage.py runserver 0.0.0.0:8001"
-        ports:
-           - "8001:8001"
+    frontend:
+       container_name: frontend
+       build: ./frontend/asr
+       volumes:
+           - './frontend/asr:/app'
+           - './frontend/asr/node_modules:/app/node_modules'
+       ports:
+           - 3000:3000
+       stdin_open: true
+       environment:
+           - CHOKIDAR_USEPOLLING=true
+       command: npm start
